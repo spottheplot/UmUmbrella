@@ -10,4 +10,5 @@ public class TextureManager {
 	public static Texture BACKGROUND = new Texture(Gdx.files.internal("background.png"));
 	public static Texture NORMALBEE = new Texture(Gdx.files.internal("normaklbee.png"));
 	public static Texture BOUNCEDBEE = new Texture(Gdx.files.internal("bouncedbee.png"));
+	public static Texture UMBRELLA = new Texture(Gdx.files.internal("umbrella.png"));
 }
