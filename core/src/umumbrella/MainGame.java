@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MainGame extends ApplicationAdapter {
 	
 	SpriteBatch batch;
-	public static int WIDTH = 640, HEIGHT = 480;
+	public static int WIDTH = 640, HEIGHT = 480; //This values should be adjusted
 	
 	@Override
 	public void create () {
