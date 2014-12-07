@@ -37,8 +37,8 @@ public class Bee {
 		xPosition = MathUtils.random(0, MainGame.WIDTH);
 		yPosition = MathUtils.random(MainGame.HEIGHT, 2 * MainGame.HEIGHT);
 		
-		xVelocity = 0; //For now equal to 0 and -1, check for possible range in random
-		yVelocity = -1;
+		xVelocity = MathUtils.random(-3.0f, 3.0f);
+		yVelocity = MathUtils.random(-6.0f, 0.0f);
 		
 		angle = (float) Math.atan2(yVelocity, xVelocity);
 	}
