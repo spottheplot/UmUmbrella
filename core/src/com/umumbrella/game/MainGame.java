@@ -1,4 +1,4 @@
-package umumbrella;
+package com.umumbrella.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
