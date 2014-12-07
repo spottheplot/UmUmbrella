@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class TextureManager {
 	
 	/* Loads Textures as public statics for the rest of the classes to use */
-	
 	public static Texture BACKGROUND;
 	public static Texture NORMALBEE;
 	public static Texture BOUNCEDBEE;
@@ -17,6 +16,7 @@ public class TextureManager {
 	public static TextureRegion player1;
 	public static TextureRegion player2;
 	public static Animation playerAnimation;
+	public static Texture UMBRELLA;
 	
 	public TextureManager() {
 		BACKGROUND = new Texture(Gdx.files.internal("background.png"));
@@ -32,5 +32,6 @@ public class TextureManager {
 		TextureRegion[] player = { player1, player2 };
 		playerAnimation = new Animation(0.06f, player);
 		playerAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+		UMBRELLA = new Texture(Gdx.files.internal("umbrella.png"));
 	}
 }
