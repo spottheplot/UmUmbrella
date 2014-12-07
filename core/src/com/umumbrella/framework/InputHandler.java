@@ -2,11 +2,12 @@ package com.umumbrella.framework;
 
 import com.badlogic.gdx.InputProcessor;
 import com.umumbrella.entities.Player;
+import com.umumbrella.entities.Umbrella;
 
 public class InputHandler implements InputProcessor {
 	Player player;
 
-    public InputHandler(Player player) {
+    public InputHandler(Player player, Umbrella umbrella) {
         this.player = player;
     }
 	
