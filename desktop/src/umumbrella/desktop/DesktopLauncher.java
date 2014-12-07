@@ -2,7 +2,7 @@ package umumbrella.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import umumbrella.MainGame;
+import com.umumbrella.game.MainGame;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {

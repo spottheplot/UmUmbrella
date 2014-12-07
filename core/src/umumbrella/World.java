@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import com.umumbrella.entities.Bee;
 import com.umumbrella.entities.Player;
 import com.umumbrella.entities.Umbrella;
+import com.umumbrella.framework.TextureManager;
 
 public class World {
 	
@@ -23,12 +24,6 @@ public class World {
 	
 	public void update() {
 		
-	}
-	
-	public void checkCollisions() {
-		for (Bee b: bees) {
-			
-		}
 	}
 	
 	public void render(SpriteBatch sb) {
