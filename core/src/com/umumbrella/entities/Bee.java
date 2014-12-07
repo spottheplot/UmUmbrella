@@ -2,19 +2,21 @@ package com.umumbrella.entities;
 
 import com.umumbrella.game.MainGame;
 import com.umumbrella.framework.TextureManager;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 
 public class Bee {
 
-	private float xPosition, yPosition, xVelocity, yVelocity;
-	private final float angle;
 	private TextureRegion beeTexture;
 	private int beeWidth, beeHeight;
 	private boolean bounced;
+	private final Circle beeCircle;
+	Vector2 position;
+	Vector2 speed;
 
 	/**
 	 * Instantiates a new bee.
@@ -24,102 +26,100 @@ public class Bee {
 	public Bee(float chance) {
 		if (MathUtils.random() < chance) {
 			bounced = false;
-			
+
 			beeWidth = TextureManager.NORMALBEE.getWidth();
 			beeHeight = TextureManager.NORMALBEE.getHeight();
 			beeTexture = new TextureRegion(TextureManager.NORMALBEE, beeWidth, beeHeight);
 		}
 		else {
 			bounced = true;
-			
+
 			beeWidth = TextureManager.BOUNCEDBEE.getWidth();
 			beeHeight = TextureManager.BOUNCEDBEE.getHeight();
 			beeTexture = new TextureRegion(TextureManager.BOUNCEDBEE, beeWidth, beeHeight);
 		}
 
 		//Initialize position out of the screen over the top
-		xPosition = MathUtils.random(0, MainGame.WIDTH);
-		yPosition = MathUtils.random(MainGame.HEIGHT, 2 * MainGame.HEIGHT);
-		
-		xVelocity = MathUtils.random(-3.0f, 3.0f);
-		yVelocity = MathUtils.random(-6.0f, 0.0f);
-		
-		angle = (float) Math.atan2(yVelocity, xVelocity);
+		position = new Vector2(
+				MathUtils.random(0, MainGame.WIDTH),
+				MathUtils.random(MainGame.HEIGHT, 2 * MainGame.HEIGHT));
+
+		speed = new Vector2(
+				MathUtils.random(-3.0f, 3.0f),
+				MathUtils.random(-6.0f, 0.0f));
+
+		beeCircle = new Circle(position, beeWidth);
 	}
-	
+
 	public void update() {
 		//Constants velocity for now, implement acceleration or change of direction??
-		xPosition += xVelocity * Gdx.graphics.getDeltaTime();
-		yPosition += yVelocity * Gdx.graphics.getDeltaTime();
+		position.x += speed.x * Gdx.graphics.getDeltaTime();
+		position.y += speed.y * Gdx.graphics.getDeltaTime();
 	}
-	
-	public void render(SpriteBatch sb) {
-		sb.draw(beeTexture, xPosition - beeWidth / 2, yPosition - beeHeight / 2, xPosition, yPosition, beeWidth, beeHeight, 1.0f, 1.0f, angle * 180 / (float) Math.PI);
-	}
-	
+
 	public void setxVelocity(float xVelocity) {
-		this.xVelocity = xVelocity;
+		speed.x = xVelocity;
 	}
-	
+
 	public void setyVelocity(float yVelocity) {
-		this.yVelocity = yVelocity;
+		speed.y = yVelocity;
 	}
-	
+
 	public void setxPosition(float xPosition) {
-		this.xPosition = xPosition;
+		position.x = xPosition;
 	}
-	
+
 	public void setyPosition(float yPosition) {
-		this.yPosition = yPosition;
+		position.y = yPosition;
 	}
-	
+
 	public void setBounced(boolean bounced) {
 		this.bounced = bounced;
 	}
-	
+
 	public float getxPosition() {
-		return xPosition;
+		return position.x;
 	}
-	
+
 	public float getyPosition() {
-		return yPosition;
+		return position.y;
 	}
-	
+
 	public float getxVelocity() {
-		return xVelocity;
+		return speed.x;
 	}
-	
+
 	public float getyVelocity() {
-		return yVelocity;
+		return speed.y;
 	}
-	
+
 	public boolean getBounced() {
 		return bounced;
 	}
-	
-	public void bounceOff(float xUmbrella, float yUmbrella) { //THIS METHOD NEEDS TO BE MOVED OUTSIDE. KEEP HERE FOR THE MATHS
-		
-		bounced = true;
-		
-		//Change velocity according to collision physics
-		
-		double collisionAngle = Math.atan2(yPosition - yUmbrella, xPosition - xUmbrella);
-		double rotationAngle = 2 * (Math.PI / 2 - collisionAngle);
 
-		double newXSpeed = 0;
-		double newYSpeed = 0;
-		
-		if (angle > collisionAngle + Math.PI) { 			//Rotate anti clock-wise
-			newXSpeed = Math.cos(rotationAngle) * xVelocity + Math.sin(rotationAngle) * yVelocity;
-			newYSpeed = -Math.sin(rotationAngle) * xVelocity + Math.cos(rotationAngle) * yVelocity;
-		}
-		else { 				//Rotate clock-wise
-			newXSpeed = Math.cos(rotationAngle) * xVelocity - Math.sin(rotationAngle) * yVelocity;
-			newYSpeed = Math.sin(rotationAngle) * xVelocity + Math.cos(rotationAngle) * yVelocity;
-		}
-		
-		xVelocity = (float) newXSpeed;
-		yVelocity = (float) newYSpeed;
-	}
+	//	public void bounceOff(float xUmbrella, float yUmbrella) { //THIS METHOD NEEDS TO BE MOVED OUTSIDE. KEEP HERE FOR THE MATHS
+	//
+	//		bounced = true;
+	//
+	//		//Change velocity according to collision physics
+	//
+	//		double collisionAngle = Math.atan2(yPosition - yUmbrella, xPosition - xUmbrella);
+	//		double rotationAngle = 2 * (Math.PI / 2 - collisionAngle);
+	//
+	//		double newXSpeed = 0;
+	//		double newYSpeed = 0;
+	//
+	//		if (angle > collisionAngle + Math.PI) { 			//Rotate anti clock-wise
+	//			newXSpeed = Math.cos(rotationAngle) * xVelocity + Math.sin(rotationAngle) * yVelocity;
+	//			newYSpeed = -Math.sin(rotationAngle) * xVelocity + Math.cos(rotationAngle) * yVelocity;
+	//		}
+	//		else { 				//Rotate clock-wise
+	//			newXSpeed = Math.cos(rotationAngle) * xVelocity - Math.sin(rotationAngle) * yVelocity;
+	//			newYSpeed = Math.sin(rotationAngle) * xVelocity + Math.cos(rotationAngle) * yVelocity;
+	//		}
+	//
+	//		xVelocity = (float) newXSpeed;
+	//		yVelocity = (float) newYSpeed;
+	//	}
 
 }
