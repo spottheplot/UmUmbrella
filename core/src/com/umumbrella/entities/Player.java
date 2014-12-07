@@ -17,9 +17,9 @@ public class Player {
 	}
 
 	public void update() {
-		//Constants velocity for now, implement acceleration or change of direction??
+		//Constants velocity in x for now, no speed in y axis
 		xPosition += xVelocity * Gdx.graphics.getDeltaTime();
-		yPosition += yVelocity * Gdx.graphics.getDeltaTime();
+//		yPosition += yVelocity * Gdx.graphics.getDeltaTime();
 	}
 
 	public void setxVelocity(float xVelocity) {

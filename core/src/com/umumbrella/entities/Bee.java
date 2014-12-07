@@ -85,6 +85,14 @@ public class Bee {
 		return yPosition;
 	}
 	
+	public int getBeeWidth() {
+		return beeWidth;
+	}
+	
+	public int getBeeHeight() {
+		return beeHeight;
+	}
+	
 	public float getxVelocity() {
 		return xVelocity;
 	}
@@ -95,6 +103,10 @@ public class Bee {
 	
 	public boolean getBounced() {
 		return bounced;
+	}
+	
+	public float getAngle() {
+		return angle;
 	}
 	
 	public void bounceOff(float xUmbrella, float yUmbrella) { //THIS METHOD NEEDS TO BE MOVED OUTSIDE. KEEP HERE FOR THE MATHS
