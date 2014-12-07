@@ -9,15 +9,19 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 
 public class Bee {
-	
-	private float xPosition, yPosition, xVelocity, yVelocity, angle;
+
+	private float xPosition, yPosition, xVelocity, yVelocity;
+	private final float angle;
 	private TextureRegion beeTexture;
 	private int beeWidth, beeHeight;
 	private boolean bounced;
-	
+
+	/**
+	 * Instantiates a new bee.
+	 *
+	 * @param chance The chance (0 to 1) specified as input the bee starts head first or sting first
+	 */
 	public Bee(float chance) {
-		
-		//Depending on the chance (0 to 1) specified as input the bee starts head first or sting first
 		if (MathUtils.random() < chance) {
 			bounced = false;
 			
@@ -31,9 +35,9 @@ public class Bee {
 			beeWidth = TextureManager.BOUNCEDBEE.getWidth();
 			beeHeight = TextureManager.BOUNCEDBEE.getHeight();
 			beeTexture = new TextureRegion(TextureManager.BOUNCEDBEE, beeWidth, beeHeight);
-		}		
-		
-		//Initialize position out of the screen over the top		
+		}
+
+		//Initialize position out of the screen over the top
 		xPosition = MathUtils.random(0, MainGame.WIDTH);
 		yPosition = MathUtils.random(MainGame.HEIGHT, 2 * MainGame.HEIGHT);
 		
@@ -43,7 +47,7 @@ public class Bee {
 		angle = (float) Math.atan2(yVelocity, xVelocity);
 	}
 	
-	public void update() {		
+	public void update() {
 		//Constants velocity for now, implement acceleration or change of direction??
 		xPosition += xVelocity * Gdx.graphics.getDeltaTime();
 		yPosition += yVelocity * Gdx.graphics.getDeltaTime();
