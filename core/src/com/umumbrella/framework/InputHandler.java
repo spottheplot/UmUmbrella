@@ -9,10 +9,10 @@ public class InputHandler implements InputProcessor {
 	Player player;
 	Umbrella umbrella;
 
-    public InputHandler(Player player, Umbrella umbrella) {
-        this.player = player;
-        this.umbrella = umbrella;
-    }
+	public InputHandler(Player player, Umbrella umbrella) {
+		this.player = player;
+		this.umbrella = umbrella;
+	}
 
 	@Override
 	public boolean keyDown(int keycode) {
@@ -21,11 +21,11 @@ public class InputHandler implements InputProcessor {
 		case (Input.Keys.W):
 		case (Input.Keys.LEFT):
 			player.setxVelocity(-Player.gethSpeed());
-			break;
+		break;
 		case (Input.Keys.D):
 		case (Input.Keys.RIGHT):
 			player.setxVelocity(Player.gethSpeed());
-			break;
+		break;
 		default:
 			break;
 		}
@@ -43,7 +43,7 @@ public class InputHandler implements InputProcessor {
 		case (Input.Keys.D):
 		case (Input.Keys.RIGHT):
 			player.setxVelocity(0);
-			break;
+		break;
 		}
 		// TODO Add umbrella
 		return true;
@@ -75,7 +75,7 @@ public class InputHandler implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
+		umbrella.update(screenX, screenY);
 		return false;
 	}
 
