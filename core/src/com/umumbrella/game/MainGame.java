@@ -4,8 +4,12 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.umumbrella.GameWorld.World;
+import com.umumbrella.GameWorld.Renderer;
 
 public class MainGame extends ApplicationAdapter {
+	private World world;
+	private Renderer renderer;
 	
 	SpriteBatch batch;
 	public static int WIDTH = 640, HEIGHT = 480; //This values should be adjusted
@@ -17,7 +21,6 @@ public class MainGame extends ApplicationAdapter {
 	
 	@Override
 	public void dispose () {
-		
 		batch.dispose();
 	}
 
