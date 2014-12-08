@@ -1,33 +1,35 @@
 package com.umumbrella.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 import com.umumbrella.game.MainGame;
 
 public class Player {
-	private float xPosition, yPosition, xVelocity, yVelocity;
+	Vector2 position;
+	Vector2 speed;
 	private int playerWidth, playerHeight;
 	private boolean jumping;
 	private static int hSpeed = 60;
 
 	public Player() {
-		xPosition = MainGame.WIDTH / 2;
+		position.x = MainGame.WIDTH / 2;
 		//TODO: Determine ground position from background
-		yPosition = MainGame.HEIGHT * 5 / 2;
+		position.y = MainGame.HEIGHT * 5 / 2;
 		jumping = false;
 	}
 
 	public void update() {
-		//Constants velocity for now, implement acceleration or change of direction??
-		xPosition += xVelocity * Gdx.graphics.getDeltaTime();
-		yPosition += yVelocity * Gdx.graphics.getDeltaTime();
+		// Position
+		position.add(speed.scl(Gdx.graphics.getDeltaTime()));
+		//TODO Texture update
 	}
 
 	public void setxVelocity(float xVelocity) {
-		this.xVelocity = xVelocity;
+		speed.x = xVelocity;
 	}
 
 	public void setyVelocity(float yVelocity) {
-		this.yVelocity = yVelocity;
+		speed.y = yVelocity;
 	}
 
 	public void setJumping(boolean jumping) {
@@ -35,11 +37,19 @@ public class Player {
 	}
 
 	public void setxPosition(float xPosition) {
-		this.xPosition = xPosition;
+		position.x = xPosition;
 	}
 
 	public void setyPosition(float yPosition) {
-		this.yPosition = yPosition;
+		position.y = yPosition;
+	}
+
+	public void setPosition(Vector2 position) {
+		this.position = position;
+	}
+
+	public void setSpeed(Vector2 speed) {
+		this.speed = speed;
 	}
 
 	public int getPlayerHeight() {
@@ -51,22 +61,30 @@ public class Player {
 	}
 
 	public float getxPosition() {
-		return xPosition;
+		return position.x;
 	}
 
 	public float getxVelocity() {
-		return xVelocity;
+		return speed.x;
 	}
 
 	public float getyPosition() {
-		return yPosition;
+		return position.y;
 	}
 
 	public float getyVelocity() {
-		return yVelocity;
+		return speed.y;
 	}
 
 	public static int gethSpeed() {
 		return hSpeed;
+	}
+
+	public Vector2 getPosition() {
+		return position;
+	}
+
+	public Vector2 getSpeed() {
+		return speed;
 	}
 }
