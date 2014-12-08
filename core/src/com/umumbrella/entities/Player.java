@@ -21,7 +21,6 @@ public class Player {
 	public void update() {
 		// Position
 		position.add(speed.scl(Gdx.graphics.getDeltaTime()));
-		//TODO Texture update
 	}
 
 	public void setxVelocity(float xVelocity) {

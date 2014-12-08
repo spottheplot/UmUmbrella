@@ -85,6 +85,14 @@ public class Bee {
 		return position.y;
 	}
 
+	public int getBeeWidth() {
+		return beeWidth;
+	}
+
+	public int getBeeHeight() {
+		return beeHeight;
+	}
+
 	public float getxVelocity() {
 		return speed.x;
 	}
@@ -121,5 +129,10 @@ public class Bee {
 	//		xVelocity = (float) newXSpeed;
 	//		yVelocity = (float) newYSpeed;
 	//	}
+
+	public float getAngle() {
+		return speed.angleRad();
+	}
+
 
 }
